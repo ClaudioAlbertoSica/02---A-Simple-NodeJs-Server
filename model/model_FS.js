@@ -2,88 +2,88 @@ import fs from 'fs'
 
 class Model_FS {
     constructor() {
-        this.contenedor = 'contenedor.json'
+        this.container = 'container.json'
     }
 
-    async verificarPath() {
+    async verifycarPath() {
         try {
-            if (!(await Promise.resolve(fs.existsSync(this.contenedor)))) {
-                await fs.promises.writeFile(this.contenedor, '[]', 'utf-8')
+            if (!(await Promise.resolve(fs.existsSync(this.container)))) {
+                await fs.promises.writeFile(this.container, '[]', 'utf-8')
             }
         } catch (error) {
-            throw new Error(`Error al verificar el FilePath: ${this.contenedor} \n ${error}`)
+            throw new Error(`Error at FilePath verification: ${this.container} \n ${error}`)
         }
     }
 
-    async leerArchivo() {
+    async readFile() {
         try {
-            let listado = []
-            await this.verificarPath()
-            listado = JSON.parse(await fs.promises.readFile(this.contenedor, 'utf-8'))
-            return listado
+            let list = []
+            await this.verifycarPath()
+            list = JSON.parse(await fs.promises.readFile(this.container, 'utf-8'))
+            return list
         } catch (error) {
-            throw new Error(`No se pudo leer el archivo. \n ${error.message}`)
+            throw new Error(`Cannot read file. \n ${error.message}`)
         }
     }
 
-    async escribirArchivo(listado) {
+    async writeFile(list) {
         try {
-            await fs.promises.writeFile(this.contenedor, JSON.stringify(listado, null, '\t'))
+            await fs.promises.writeFile(this.container, JSON.stringify(list, null, '\t'))
         } catch (error) {
-            throw new Error(`No se pudo escribir el archivo. \n ${error.message}`)
+            throw new Error(`Cannot write file. \n ${error.message}`)
         }
     }
 
 
 
-    listarTodos = async () => {
+    listAll = async () => {
         try{
-        const listado = await this.leerArchivo()
+        const list = await this.readFile()
 
-        return listado
+        return list
         } catch (error){
-            throw new Error(`El listado de libros tuvo un problema. /n /n ${error.message}`)
+            throw new Error(`The color list had a problem. /n /n ${error.message}`)
         }
     }
 
 
-    aniadirColor = async (color) => {
+    addColor = async (color) => {
         try{
-        const listado = await this.leerArchivo()
+        const list = await this.readFile()
 
-        const colorIndex = listado.findIndex(colorListado => colorListado == color)
+        const colorIndex = list.findIndex(colorList => colorList == color)
 
-        let colorAniadido = null
+        let addedColor = null
 
         if (colorIndex == -1) {
-            listado.push(color)
-            await this.escribirArchivo(listado)
-            colorAniadido = color
+            list.push(color)
+            await this.writeFile(list)
+            addedColor = color
         }
 
-        return colorAniadido
+        return addedColor
     } catch (error){
-        throw new Error(`El listado de libros tuvo un problema. /n /n ${error.message}`)
+        throw new Error(`The color list had a problem. /n /n ${error.message}`)
     }
 }
 
 
     deleteColor = async (color) => {
 try{
-    const listado = await this.leerArchivo()
+    const list = await this.readFile()
 
-    const colorIndex = listado.findIndex(colorListado => colorListado == color)
+    const colorIndex = list.findIndex(colorList => colorList == color)
 
-        let colorBorrado = null
+        let deletedColor = null
 
     if(colorIndex != -1) {
-        colorBorrado = listado.splice(colorIndex, 1)
-        await this.escribirArchivo(listado)
+        deletedColor = list.splice(colorIndex, 1)
+        await this.writeFile(list)
     }
 
-        return colorBorrado
+        return deletedColor
     } catch (error){
-        throw new Error(`El listado de libros tuvo un problema. /n /n ${error.message}`)
+        throw new Error(`The color list had a problem. /n /n ${error.message}`)
     }
 }
 

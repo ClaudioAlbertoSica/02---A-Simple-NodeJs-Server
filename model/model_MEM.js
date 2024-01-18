@@ -1,42 +1,42 @@
 class Model_MEM{
     constructor(){
-        this.contenedor = []
+        this.container = []
     }
 
-    listarTodos = () =>{
+    listAll = () =>{
 
-        return this.contenedor
+        return this.container
 
     }
 
 
-    aniadirColor = (color) => {
+    addColor = (color) => {
 
-    const colorIndex = this.contenedor.findIndex(colorListado => colorListado == color)
+    const colorIndex = this.container.findIndex(listedColor => listedColor == color)
 
-    let colorAniadido = null
+    let addedColor = null
     
     if(colorIndex == -1){
-        this.contenedor.push(color)
-        colorAniadido  = color
+        this.container.push(color)
+        addedColor  = color
     }
 
-        return colorAniadido
+        return addedColor
     
     }
 
 
     deleteColor = (color) => {
 
-        const colorIndex = this.contenedor.findIndex(colorListado => colorListado == color)
+        const colorIndex = this.container.findIndex(listedColor => listedColor == color)
     
-        let colorBorrado = null
+        let deletedColor = null
         
         if(colorIndex != -1){
-            colorBorrado = this.contenedor.splice(colorIndex,1)
+            deletedColor = this.container.splice(colorIndex,1)
         }
     
-            return colorBorrado
+            return deletedColor
         
         }
 
