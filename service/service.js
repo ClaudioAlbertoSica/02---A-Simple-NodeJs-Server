@@ -1,33 +1,36 @@
 //import Model from '../model/model_MEM.js'
 import Model from '../model/model_FS.js'
 
+//The idea of the previous 2 imports is that one remains comented, while the other one remains active.
+//They define if the model to be use will be Memory (non persistet one) or File system (words/colors are stored in a file in the computer)
+
 class Service{
     constructor(){
         this.model = new Model()
     }
 
-    saludo = () => {
+    salute = () => {
 
-        const horaActual = new Date().toLocaleTimeString()
+        const currentTime = new Date().toLocaleTimeString()
 
-        if( horaActual < '06:00:00'){
-            return `¡Buenas noches!`
-        } else if (horaActual < '13:00:00')  {
-            return `¡Buenos días!`
-        } else if (horaActual < '20:00:00') {
-            return `¡Buenas tardes!`
+        if( currentTime < '06:00:00'){
+            return `Good night!`
+        } else if (currentTime < '13:00:00')  {
+            return `Good morning!`
+        } else if (currentTime < '20:00:00') {
+            return `Good afternoon!`
         } else {
-            return `¡Buenas noches!`
+            return `Good night!`
         }
 
     }
 
 
-    listarTodos = async () => {
+    listAll = async () => {
         try{
-    const listado = await this.model.listarTodos() 
+    const list = await this.model.listAll() 
 
-    return listado
+    return list
 
     } catch(error){
         throw(error)
@@ -35,15 +38,15 @@ class Service{
 }
 
 
-    aniadirColor = async (color) => {
+addColor = async (color) => {
 try{
-    let colorAniadido = await this.model.aniadirColor(color)
+    let addedColor = await this.model.addColor(color)
 
-    if(! colorAniadido){
-        colorAniadido = `El color que intenta añadir ya existe dentro de nuestro listado`
+    if(! addedColor){
+        addedColor = `The color you are trying to add, already exists within our list`
     }
 
-    return colorAniadido
+    return addedColor
 
 } catch(error){
     throw(error)
@@ -53,13 +56,13 @@ try{
 
     deleteColor = async (color) => {
 try{ 
-        let colorBorrado = await this.model.deleteColor(color)
+        let deletedColor = await this.model.deleteColor(color)
     
-        if(! colorBorrado){
-            colorBorrado = `El color que intenta borrar, NO existe dentro de nuestro listado`
+        if(! deletedColor){
+            deletedColor = `The color you are trying to delete doest not exists within our list`
         }
     
-        return colorBorrado
+        return deletedColor
     
     } catch(error){
         throw(error)
