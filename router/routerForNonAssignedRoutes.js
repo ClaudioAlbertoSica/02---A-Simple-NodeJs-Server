@@ -8,10 +8,10 @@ class routerForNonAssignedRoutes{
     }
 
     start(){
-        this.router.get('/*', this.controller.rutaNoAsignada)
-        this.router.post('/*', this.controller.rutaNoAsignada)
-        this.router.put('/*', this.controller.rutaNoAsignada)
-        this.router.delete('/*', this.controller.rutaNoAsignada)
+        this.router.get('/*', this.controller.NonAssignedRoute)
+        this.router.post('/*', this.controller.NonAssignedRoute)
+        this.router.put('/*', this.controller.NonAssignedRoute)
+        this.router.delete('/*', this.controller.NonAssignedRoute)
 
         return this.router
     }
