@@ -1,18 +1,19 @@
 import express from 'express'
 import router from './router/router.js'
-import routerRutasNoAsignadas from './router/routerRutasNoAsignadas.js'
+import routerForNonAssignedRoutes from './router/routerForNonAssignedRoutes.js'
 
 const app = express()
 
+//Adding middleware to parse Json (mainly for testing this with PostMan)
 app.use(express.json())
-//Las siguientes dos las dejo, por si llego a armar un formulario de ingreso
+//Adding middleware to parse url-encoded requests from Forms
 app.use(express.urlencoded({extended: true}))
-//Como el Saludo debía ir en la ruta raíz... puse el formulario de carga en /carga
+//There is a Form to add words to this
 app.use('/carga', express.static('public'))
 
 app.use('/', new router().start())
-app.use('/*', new routerRutasNoAsignadas().start())
+app.use('/*', new routerForNonAssignedRoutes().start())
 
 const PORT = 8080
-const server = app.listen(PORT, () => console.log(`Servidor express escuchando en http://localhost:${PORT}`))
-server.on('error', error => console.log(`Error en servidor: ${error.message}`))
+const server = app.listen(PORT, () => console.log(`Express Server Listening at http://localhost:${PORT}`))
+server.on('error', error => console.log(`Server Error: ${error.message}`))

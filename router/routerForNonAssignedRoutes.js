@@ -1,7 +1,7 @@
 import express from 'express'
 import Controller from '../controller/controller.js'
 
-class RouterRutasNoAsignadas{
+class routerForNonAssignedRoutes{
     constructor(){
         this.router = express.Router()
         this.controller = new Controller()
@@ -17,4 +17,4 @@ class RouterRutasNoAsignadas{
     }
 }
 
-export default RouterRutasNoAsignadas
+export default routerForNonAssignedRoutes
