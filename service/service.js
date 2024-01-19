@@ -1,5 +1,5 @@
-//import Model from '../model/model_MEM.js'
-import Model from '../model/model_FS.js'
+import Model from '../model/model_MEM.js'
+//import Model from '../model/model_FS.js'
 
 //The idea of the previous 2 imports is that one remains comented, while the other one remains active.
 //They define if the model to be use will be Memory (non persistet one) or File system (words/colors are stored in a file in the computer)
